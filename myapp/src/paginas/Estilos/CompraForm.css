@@ -1,0 +1,59 @@
+.Compra-container {
+  background-color: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.card {
+  background-color: rgba(30, 30, 30, 0.9)!important;
+  color: #ffffff!important;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+  border-bottom: 3px solid rgba(79, 3, 3) !important;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: rgba(60, 60, 60, 1.5);
+  border-color: transparent !important;
+  box-shadow: 0 0 0 0.25rem rgba(142, 3, 3, 0.527)!important;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-primary {
+  background-color: rgb(142, 3, 3)!important;
+  border-color: rgb(142, 3, 3)!important;
+}
+
+.btn-primary:hover {
+  background-color: rgb(180, 4, 4)!important;
+  border-color: rgb(180, 4, 4)!important;
+} 
+
+.btn-outline-secondary {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-outline-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.list-group-item {
+  color: #ffffff !important;
+  background-color: transparent !important;
+  /* Deshabilitar completamente el efecto hover en Bootstrap */
+  pointer-events: none !important;
+}
+
+.invalid-feedback {
+  color: #ff6b6b;
+}

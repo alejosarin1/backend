@@ -1,0 +1,232 @@
+nav{
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  height: 13vh;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1000;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  padding:0;
+  margin:0;
+  width: 100%;
+}
+
+li {
+  position: relative;
+  padding: 40px;
+  margin-top: 15px;
+}
+
+li.login {
+  margin-left: auto;
+  height: 15vh;
+  background: rgb(142, 3, 3); 
+}
+
+nav a,
+nav li a,
+.nav-links a,
+li.login a {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  text-decoration: none;
+  color: #ffffff !important; /* Forzamos el color blanco */
+}
+
+/* Estilo para el hover de los enlaces */
+nav a:hover,
+nav li a:hover {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+
+.search-bar {
+  margin-left: 20px; /* Espacio entre el ul y la barra de búsqueda */
+  padding: 8px;
+  border: 2px solid rgb(142, 3, 3);
+  border-radius: 25px; /* Borde redondeado */
+  outline: none;
+  font-size: 16px;
+}
+
+.search-bar:focus {
+  border: 2px solid #ccc;
+}
+
+li:hover{
+transition: 200ms;
+background-color: #1f0808;
+height: 14.8vh;
+}
+
+/* Hamburger menu button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+} 
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  padding: 0;
+  top: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li {
+  padding: 15px;
+  margin: 0;
+  height: auto;
+  width: 100%;
+}
+
+.dropdown-content li:hover {
+  background-color: rgb(142, 3, 3);
+  height: auto;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}
+
+/* !Media queries para diferentes tamaños de pantalla */
+
+@media screen and (max-width: 1024px) {
+  nav {
+      padding: 0 10px;   
+  }
+  
+  .search-bar {
+      width: 150px;
+  }
+  
+  li {
+      position: relative;
+      padding: 20px;
+  }
+
+  li:hover{
+      height: 13vh;
+  }
+
+  li.login {
+      height: 13vh;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  nav {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 10px;
+  }
+  
+  .logo {
+      width: 140px;
+  }
+  
+  .menu-toggle {
+      display: flex;
+      position: relative; /* Cambiado */
+      right: -300px; /* Añadido */
+      margin: 0; /* Reseteado */
+  }
+  
+  .search-bar {
+      order: 3;
+      width: 100%;
+      margin: 10px 0;
+      display: none;
+  }
+  
+  .search-bar.active {
+      display: block;
+  }
+  
+  ul {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+      order: 4;
+  }
+  
+  ul.active {
+      display: flex;
+  }
+  
+  li {
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+  }
+  
+  li.tienda {
+      margin-left: 0;
+  }
+  
+  li.login {
+      margin-left: 0;
+      height: auto;
+  }
+  
+  li:hover {
+      height: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dropdown-content {
+    position: static;
+    display: none;
+    width: 100%;
+    background-color: rgba(31, 8, 8, 0.95);
+  }
+
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content li {
+    padding: 10px;
+  }
+}

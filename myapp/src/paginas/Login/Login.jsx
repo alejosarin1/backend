@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../AuthContext'; // Ruta corregida
+import { useAuth } from '../../AuthContext';
 import './Login.css';
 
 const Login = () => {
@@ -13,24 +13,47 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!email || !password) {
-    setError('Todos los campos son requeridos');
-    return;
-  }
+    if (!email || !password) {
+      setError('Todos los campos son requeridos');
+      return;
+    }
 
-  try {
-    setLoading(true);
-    setError('');
-    await login({ email, password }); // Cambia aquí
-    navigate('/');
-  } catch (err) {
-    setError('Email o contraseña incorrectos');
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+      setError('');
+
+      // Conexión con el backend
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Credenciales incorrectas');
+      }
+
+      const data = await response.json();
+
+      // Guardar el token de autenticación (si el backend lo devuelve)
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        await login({ email, token: data.token });
+        navigate('/');
+      } else {
+        throw new Error('No se recibió el token de autenticación');
+      }
+    } catch (err) {
+      setError(err.message || 'Error al iniciar sesión');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="login-container">
@@ -67,11 +90,6 @@ const Login = () => {
         <div className="login-footer">
           <p>¿No tienes una cuenta? <Link to="/registro">Regístrate</Link></p>
           <p><Link to="/">Olvidé mi contraseña</Link></p>
-        </div>
-        {/* Texto adicional para usuario y clave de prueba */}
-        <div className="test-credentials">
-          <p><strong>Usuario de prueba:</strong> usuario@ejemplo.com</p>
-          <p><strong>Contraseña de prueba:</strong> contraseña123</p>
         </div>
       </div>
     </div>

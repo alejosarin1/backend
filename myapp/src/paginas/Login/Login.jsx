@@ -13,24 +13,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!email || !password) {
-      setError('Todos los campos son requeridos');
-      return;
-    }
+  if (!email || !password) {
+    setError('Todos los campos son requeridos');
+    return;
+  }
 
-    try {
-      setLoading(true);
-      setError('');
-      await login({ username: email, email });
-      navigate('/');
-    } catch (err) {
-      setError('Email o contraseña incorrectos');
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    setError('');
+    await login({ email, password }); // Cambia aquí
+    navigate('/');
+  } catch (err) {
+    setError('Email o contraseña incorrectos');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="login-container">
